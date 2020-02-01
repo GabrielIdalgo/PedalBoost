@@ -10,17 +10,33 @@
 /* Headers includes */
 #include "main.h"
 
-/* Defines */
+/* Libraries includes */
+#include <Event.h>
+#include <Timer.h>
 
+/* Headers includes */
+#include "main.h"
+
+Timer t;
+
+/* Defines */
 
 /* Initialization */
 void setup()
 {
+	/* Init Timer 100 ms */
+	t.every(100, Task100ms);
 
 }
 
-/*Main Loop of Code */
+/* Main Loop */
 void loop()
+{
+	t.update();
+}
+
+/* CallBack Timer runs every 100ms */
+void Task100ms()
 {
 
 }
