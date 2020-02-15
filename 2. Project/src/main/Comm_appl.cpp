@@ -9,14 +9,13 @@
 /******************************************************************************************************************************************************************************************************************************************************** 
     ### Headers includes
 *********************************************************************************************************************************************************************************************************************************************************/
-#include "General_types.h"
 #include "Comm_appl.h"
 
 
 /*
  *   ### Global Variables into this scope (this file *.c)
 **/
-/* Tabela de todos os comandos disponíveis do ESP para o Slave. Formatação da tabela: {{SID,TYPE,ID}, byte, callback function} */
+/* Tabela de todos os comandos disponï¿½veis do ESP para o Slave. Formataï¿½ï¿½o da tabela: {{SID,TYPE,ID}, byte, callback function} */
 #ifdef _MODULE_TYPE_PLUGS
 static const Kostia_CmdTable_t CmdTable_FromMasterToSlave[] = {
     {{0x01U, 0x01U, 0x01U}, 0x01U, Comm_appl_QueryID},       /* Query if slave is configured */
@@ -39,8 +38,8 @@ static const Kostia_CmdTable_t CmdTable_FromMasterToSlave[] = {
 
 
 /*
-*   Função: Frame Send Machine (FSM)
-*    Descrição: Esta função é uma máquina de estados que controla o envio de frames
+*   Funï¿½ï¿½o: Frame Send Machine (FSM)
+*    Descriï¿½ï¿½o: Esta funï¿½ï¿½o ï¿½ uma mï¿½quina de estados que controla o envio de frames
 *    \Parametros: Uart_t *pUart - estrutura de dados principal
 */
 byte Comm_appl_FSM( Uart_t *pUart )
@@ -81,8 +80,8 @@ byte Comm_appl_FSM( Uart_t *pUart )
 
 
 /*
-*    Função: Frame Receive Machine (FRM)
-*    Descrição: Esta função é uma máquina de estados que controla a recepção de frames
+*    Funï¿½ï¿½o: Frame Receive Machine (FRM)
+*    Descriï¿½ï¿½o: Esta funï¿½ï¿½o ï¿½ uma mï¿½quina de estados que controla a recepï¿½ï¿½o de frames
 */
 byte Comm_appl_FRM(Uart_t *pUart)
 {

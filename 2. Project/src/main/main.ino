@@ -14,9 +14,6 @@
 #include <Event.h>
 #include <Timer.h>
 
-/* Headers includes */
-#include "main.h"
-
 Timer t;
 
 /* Defines */
@@ -24,8 +21,8 @@ Timer t;
 /* Initialization */
 void setup()
 {
-	/* Init Timer 100 ms */
-	t.every(100, Task100ms);
+	/* Init Timer 10 ms */
+	t.every(10, Task100ms);
 
 }
 
@@ -35,7 +32,7 @@ void loop()
 	t.update();
 }
 
-/* CallBack Timer runs every 100ms */
+/* CallBack Timer runs every 10ms */
 void Task100ms()
 {
 
