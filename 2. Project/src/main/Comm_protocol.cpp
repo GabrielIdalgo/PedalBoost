@@ -18,7 +18,7 @@
 *********************************************************************************************************************************************************************************************************************************************************/
 int Comm_protocol_Frame_Send_Request(TxBuffer_t *pTxBuffer, int lenght)
 {
-  return Serial.write((byte *)pTxBuffer, lenght);
+  return Serial1.write((byte *)pTxBuffer, lenght);
 }
 
 
@@ -28,7 +28,7 @@ int Comm_protocol_Frame_Send_Request(TxBuffer_t *pTxBuffer, int lenght)
 *********************************************************************************************************************************************************************************************************************************************************/
 int Comm_protocol_Frame_Read_Request(RxBuffer_t *pRxBuffer, int RxBuff_Length)
 {
-    return Serial.readBytes((byte *)pRxBuffer, RxBuff_Length);
+    return Serial1.readBytes((byte *)pRxBuffer, RxBuff_Length);
 }
 
 
@@ -38,7 +38,7 @@ int Comm_protocol_Frame_Read_Request(RxBuffer_t *pRxBuffer, int RxBuff_Length)
 *********************************************************************************************************************************************************************************************************************************************************/
 int Comm_protocol_Get_TxFIFO_Lenght()
 {
-  return Serial.availableForWrite();
+  return Serial1.availableForWrite();
 }
 
 
@@ -48,5 +48,5 @@ int Comm_protocol_Get_TxFIFO_Lenght()
 *********************************************************************************************************************************************************************************************************************************************************/
 int Comm_protocol_Get_RxFIFO_Lenght()
 {
-  return Serial.available();
+  return Serial1.available();
 }

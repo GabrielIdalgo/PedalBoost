@@ -25,8 +25,8 @@ static const Kostia_CmdTable_t CmdTable_FromMasterToSlave[] = {
 
 
 /********************************************************************************************************************************************************************************************************************************************************
-    Função Frame Send Machine (FSM)
-    Descrição: Esta função uma máquina de estados que controla o envio de frames
+    Funï¿½ï¿½o Frame Send Machine (FSM)
+    Descriï¿½ï¿½o: Esta funï¿½ï¿½o uma mï¿½quina de estados que controla o envio de frames
     \Parametros: Uart_t *pUart - estrutura de dados principal
 *********************************************************************************************************************************************************************************************************************************************************/
 byte Comm_appl_FSM( Uart_t *pUart )
@@ -67,8 +67,8 @@ byte Comm_appl_FSM( Uart_t *pUart )
 
 
 /********************************************************************************************************************************************************************************************************************************************************
-    Função: Frame Receive Machine (FRM)
-    Descrição: Esta Função é uma máquina de estados que controla a recepção de frames
+    Funï¿½ï¿½o: Frame Receive Machine (FRM)
+    Descriï¿½ï¿½o: Esta Funï¿½ï¿½o ï¿½ uma mï¿½quina de estados que controla a recepï¿½ï¿½o de frames
 *********************************************************************************************************************************************************************************************************************************************************/
 byte Comm_appl_FRM(Uart_t *pUart)
 {
@@ -131,8 +131,8 @@ byte Comm_appl_FRM(Uart_t *pUart)
 
 
 /********************************************************************************************************************************************************************************************************************************************************
-    Função: Response Handling Machine (RHM)
-    Descrição: Esta Função é uma máquina de estados que avalia o comando de entrada, recebido da Serial Rx, e manipula uma resposta
+    Funï¿½ï¿½o: Response Handling Machine (RHM)
+    Descriï¿½ï¿½o: Esta Funï¿½ï¿½o ï¿½ uma mï¿½quina de estados que avalia o comando de entrada, recebido da Serial Rx, e manipula uma resposta
     \Parametros: Uart_t *pUart - estrutura de dados principal
 *********************************************************************************************************************************************************************************************************************************************************/
 byte Comm_appl_RHM(Uart_t *pUart)
@@ -147,7 +147,7 @@ byte Comm_appl_RHM(Uart_t *pUart)
             if(Comm_appl_FindCommand(&pUart->RxBuffer[_SID], pUart) == KOSTIA_OK){
                 pUart->RHM_State = RHM_State_Idle;
                 /*if(digitalRead(COMM_ENALE_IN) == LOW){
-                    Comm_appl_Request_ChangeOf_FSM_State(pUart, FSM_State_Send); */  /* Ordem para a FSM (Frame Send Machine) transmitir um frame de resposta (previamente configurada em alguma das Função da tabela de comandos)  */
+                    Comm_appl_Request_ChangeOf_FSM_State(pUart, FSM_State_Send); */  /* Ordem para a FSM (Frame Send Machine) transmitir um frame de resposta (previamente configurada em alguma das Funï¿½ï¿½o da tabela de comandos)  */
              }/*
             }else{
                 pUart->RHM_State = RHM_State_Idle;
@@ -164,8 +164,8 @@ byte Comm_appl_RHM(Uart_t *pUart)
 
 
 /********************************************************************************************************************************************************************************************************************************************************
-    Função
-    Descrição: Esta Função realiza a mudanÃ§a da variÃ¡vel de estado da FSM
+    Funï¿½ï¿½o
+    Descriï¿½ï¿½o: Esta Funï¿½ï¿½o realiza a mudanÃ§a da variÃ¡vel de estado da FSM
 *********************************************************************************************************************************************************************************************************************************************************/
 void Comm_appl_Request_ChangeOf_FSM_State(Uart_t *pUart, FSM_States_t nextState)
 {
@@ -174,8 +174,8 @@ void Comm_appl_Request_ChangeOf_FSM_State(Uart_t *pUart, FSM_States_t nextState)
 
 
 /********************************************************************************************************************************************************************************************************************************************************
-    Função
-    Descrição: Esta Função realiza a mudanÃ§a da variÃ¡vel de estado da FRM
+    Funï¿½ï¿½o
+    Descriï¿½ï¿½o: Esta Funï¿½ï¿½o realiza a mudanÃ§a da variÃ¡vel de estado da FRM
 *********************************************************************************************************************************************************************************************************************************************************/
 void Comm_appl_Request_ChangeOf_FRM_State(Uart_t *pUart, FRM_States_t nextState)
 {
@@ -184,8 +184,8 @@ void Comm_appl_Request_ChangeOf_FRM_State(Uart_t *pUart, FRM_States_t nextState)
 
 
 /********************************************************************************************************************************************************************************************************************************************************
-    Função
-    Descrição: Esta Função realiza a mudanÃ§a da variÃ¡vel de estado da RHM
+    Funï¿½ï¿½o
+    Descriï¿½ï¿½o: Esta Funï¿½ï¿½o realiza a mudanÃ§a da variÃ¡vel de estado da RHM
 *********************************************************************************************************************************************************************************************************************************************************/
 void Comm_appl_Request_ChangeOf_RHM_State(Uart_t *pUart, RHM_States_t nextState)
 {
@@ -196,8 +196,8 @@ void Comm_appl_Request_ChangeOf_RHM_State(Uart_t *pUart, RHM_States_t nextState)
 
 
 /********************************************************************************************************************************************************************************************************************************************************
-    Função
-    Descrição: Esta Função configura o Buffer Tx que serÃ¡ passado para a camada Comm_protocol transmitir na UART
+    Funï¿½ï¿½o
+    Descriï¿½ï¿½o: Esta Funï¿½ï¿½o configura o Buffer Tx que serÃ¡ passado para a camada Comm_protocol transmitir na UART
 *********************************************************************************************************************************************************************************************************************************************************/
 int Comm_appl_FrameToBuffer(Uart_t *pUart)
 {
@@ -212,9 +212,9 @@ int Comm_appl_FrameToBuffer(Uart_t *pUart)
 
 
 /********************************************************************************************************************************************************************************************************************************************************
-    Função
+    Funï¿½ï¿½o
 
-    Descrição: Verifica se o frame recebido na serial Rx Ã© eco do frame transmitido na serial Tx.
+    Descriï¿½ï¿½o: Verifica se o frame recebido na serial Rx Ã© eco do frame transmitido na serial Tx.
 
     \Parameters: *pUart - Instancia da estrutura de dados principal Main Data.
 
@@ -231,9 +231,9 @@ int Comm_appl_Check_Frame_IsEcho(Uart_t *pUart)
 
 
 /********************************************************************************************************************************************************************************************************************************************************
-    Função
+    Funï¿½ï¿½o
 
-    Descrição: Valida se o frame recebido na serial Rx Ã© valido. Checa os campos: Break, Synch e Checksum
+    Descriï¿½ï¿½o: Valida se o frame recebido na serial Rx Ã© valido. Checa os campos: Break, Synch e Checksum
 
     \Parameters: *pUart - Instancia da estrutura de dados principal Main Data.
 
@@ -250,7 +250,7 @@ int Comm_appl_Check_Frame_IsValid(Uart_t *pUart)
 
 
 /********************************************************************************************************************************************************************************************************************************************************
-    Função
+    Funï¿½ï¿½o
 
     Description: Performs the search of the received command in the tables of the test execution.
 
@@ -273,7 +273,7 @@ static Kostia_Rsp_t Comm_appl_FindCommand(byte *pAddr, Uart_t *pUart)
 
     while (CmdTable_FromMasterToSlave[u08CounterCmd].au08Command[0] != 0){
         if((lData[0] == CmdTable_FromMasterToSlave[u08CounterCmd].au08Command[0]) && (lData[1] == CmdTable_FromMasterToSlave[u08CounterCmd].au08Command[1]) && (lData[2] == CmdTable_FromMasterToSlave[u08CounterCmd].au08Command[2])){
-            eRsp = CmdTable_FromMasterToSlave[u08CounterCmd].pfExecute(pAddr, pUart); /* Chamada da Função que manipula um frame de resposta para o comando recebido */
+            eRsp = CmdTable_FromMasterToSlave[u08CounterCmd].pfExecute(pAddr, pUart); /* Chamada da Funï¿½ï¿½o que manipula um frame de resposta para o comando recebido */
             break;
         }else{
             /* Command not find */
@@ -286,7 +286,7 @@ static Kostia_Rsp_t Comm_appl_FindCommand(byte *pAddr, Uart_t *pUart)
 
 
 /********************************************************************************************************************************************************************************************************************************************************
-    Função
+    Funï¿½ï¿½o
 
     Description: Verifica se o campo mainData.frame.Id_Source =! 0
 
@@ -301,7 +301,7 @@ static Kostia_Rsp_t Comm_appl_QueryID(byte *pCmd, Uart_t *pUart)
 
 
 /********************************************************************************************************************************************************************************************************************************************************
-    Função
+    Funï¿½ï¿½o
 
     Description: Function to read teh HW
 
@@ -317,7 +317,7 @@ static Kostia_Rsp_t Comm_appl_SetID(byte *pCmd, Uart_t *pUart)
 
 
 /********************************************************************************************************************************************************************************************************************************************************
-    Função
+    Funï¿½ï¿½o
 
     Description: Function to report error in the command table
 

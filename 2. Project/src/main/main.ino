@@ -26,6 +26,7 @@ void setup()
 	/* Init Timer 10 ms */
 	t.every(10, Task100ms);
 	Serial.begin(115200);
+	Serial1.begin(9600);
 
 }
 
@@ -40,5 +41,6 @@ void Task100ms()
 {
 	Comm_appl_FSM(&mainData.uart);
 	Comm_appl_FRM(&mainData.uart);
-	Comm_appl_RHM(&mainData.uart);
+	Comm_appl_RHM(&mainData.uart);  
+  
 }
