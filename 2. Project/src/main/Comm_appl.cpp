@@ -25,8 +25,8 @@ static const Kostia_CmdTable_t CmdTable_FromMasterToSlave[] = {
 
 
 /********************************************************************************************************************************************************************************************************************************************************
-    Fun��o Frame Send Machine (FSM)
-    Descri��o: Esta fun��o uma m�quina de estados que controla o envio de frames
+    Função Frame Send Machine (FSM)
+    Descrição: Esta fun��o uma m�quina de estados que controla o envio de frames
     \Parametros: Uart_t *pUart - estrutura de dados principal
 *********************************************************************************************************************************************************************************************************************************************************/
 byte Comm_appl_FSM( Uart_t *pUart )
@@ -67,14 +67,17 @@ byte Comm_appl_FSM( Uart_t *pUart )
 
 
 /********************************************************************************************************************************************************************************************************************************************************
-    Fun��o: Frame Receive Machine (FRM)
-    Descri��o: Esta Fun��o � uma m�quina de estados que controla a recep��o de frames
+    Função: Frame Receive Machine (FRM)
+    Descrição: Esta Função uma máquina de estados que controla a recepção de frames
 *********************************************************************************************************************************************************************************************************************************************************/
 byte Comm_appl_FRM(Uart_t *pUart)
 {
     static int RxBuff_Timeout = 0;
     static int RxBuff_Length = 0;
     static int RxBuff_Length_Previous = 0;
+
+   // Serial.println(pUart->FRM_State); 	/* ToDo [GFI][REMOVED] - Only for test */
+
     switch (pUart->FRM_State){
         case FRM_State_Idle:
         {
@@ -85,7 +88,8 @@ byte Comm_appl_FRM(Uart_t *pUart)
         }
         case FRM_State_Receiving:
         {
-            RxBuff_Length = Comm_protocol_Get_RxFIFO_Lenght();
+        	Serial.println("Receiving"); 	/* ToDo [GFI][REMOVED] - Only for test */
+        	RxBuff_Length = Comm_protocol_Get_RxFIFO_Lenght();
             if(RxBuff_Length != RxBuff_Length_Previous){
                 RxBuff_Length_Previous = RxBuff_Length;
                 RxBuff_Timeout = 0;
@@ -102,7 +106,15 @@ byte Comm_appl_FRM(Uart_t *pUart)
         case FRM_State_Received:  /* This state get datas received in Rx serial buffer and put it in a SW buffer (pUart->RxBuffer) */
         {
             int nDataRead;
+
+            Serial.println("Received"); 	/* ToDo [GFI][REMOVED] - Only for test */
             nDataRead = Comm_protocol_Frame_Read_Request(&pUart->RxBuffer, RxBuff_Length);
+            /* ToDo [GFI][REMOVED] only for test */
+            byte i;
+            for (i=0; i<5; i++){
+            	Serial.println(pUart->RxBuffer[i], HEX);
+            }
+            /* ToDo [GFI][REMOVED] only for test */
             if(Comm_appl_Check_Frame_IsEcho(pUart) == FALSE){
                 if(Comm_appl_Check_Frame_IsValid(pUart) == TRUE){
                     Comm_appl_Request_ChangeOf_FRM_State(pUart, FRM_State_Idle);
@@ -132,7 +144,7 @@ byte Comm_appl_FRM(Uart_t *pUart)
 
 /********************************************************************************************************************************************************************************************************************************************************
     Fun��o: Response Handling Machine (RHM)
-    Descri��o: Esta Fun��o � uma m�quina de estados que avalia o comando de entrada, recebido da Serial Rx, e manipula uma resposta
+    Descrição Esta Função é uma máquina de estados que avalia o comando de entrada, recebido da Serial Rx, e manipula uma resposta
     \Parametros: Uart_t *pUart - estrutura de dados principal
 *********************************************************************************************************************************************************************************************************************************************************/
 byte Comm_appl_RHM(Uart_t *pUart)
@@ -330,4 +342,3 @@ static Kostia_Rsp_t Comm_appl_CmdTableError(byte *pCmd, Uart_t *pUart)
     /* Trata a chegada de uma mensagem não registrada */
     return KOSTIA_NOK;
 }
-
