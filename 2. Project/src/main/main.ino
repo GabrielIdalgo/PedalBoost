@@ -14,7 +14,9 @@
 #include <Event.h>
 #include <Timer.h>
 
+/* Local Variables */
 Timer t;
+MainData_t mainData;
 
 /* Defines */
 
@@ -23,6 +25,8 @@ void setup()
 {
 	/* Init Timer 10 ms */
 	t.every(10, Task100ms);
+	Serial.begin(115200);
+	Serial1.begin(9600);
 
 }
 
@@ -35,5 +39,8 @@ void loop()
 /* CallBack Timer runs every 10ms */
 void Task100ms()
 {
-
+	Comm_appl_FSM(&mainData.uart);
+	Comm_appl_FRM(&mainData.uart);
+	Comm_appl_RHM(&mainData.uart);  
+  
 }
