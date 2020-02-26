@@ -310,7 +310,7 @@ static Kostia_Rsp_t Comm_appl_FindCommand(byte *pAddr, Uart_t *pUart)
 */
 static Kostia_Rsp_t Comm_appl_OffModeReq(byte *pCmd, Uart_t *pUart)
 {
-	/*PedalControl_ReqChangeMode(); */ /* ToDo[GFI][IMP] Implement function in PedalControl */
+	PedalControl_PwmControlChangeState(PedalCtr_Off);
 	pUart->PedalCtrlRequest = PedalCtr_Off;
 	Serial.println("OFF Mode"); 	/* ToDo [GFI][REMOVED] - Only for test */
 	return KOSTIA_OK;
@@ -328,7 +328,7 @@ static Kostia_Rsp_t Comm_appl_OffModeReq(byte *pCmd, Uart_t *pUart)
 */
 static Kostia_Rsp_t Comm_appl_SportModeReq(byte *pCmd, Uart_t *pUart)
 {
-	/*PedalControl_ReqChangeMode(); */ /* ToDo[GFI][IMP] Implement function in PedalControl */
+	PedalControl_PwmControlChangeState(PedalCtr_Sport);
 	Serial.println("Sport Mode"); 	/* ToDo [GFI][REMOVED] - Only for test */
 	pUart->PedalCtrlRequest = PedalCtr_Sport;
 	return KOSTIA_OK;
@@ -346,7 +346,7 @@ static Kostia_Rsp_t Comm_appl_SportModeReq(byte *pCmd, Uart_t *pUart)
 */
 static Kostia_Rsp_t Comm_appl_ProtectModeReq(byte *pCmd, Uart_t *pUart)
 {
-	/*PedalControl_ReqChangeMode(); */ /* ToDo[GFI][IMP] Implement function in PedalControl */
+	PedalControl_PwmControlChangeState(PedalCtr_WaitProtect);
 	Serial.println("Protect Mode"); 	/* ToDo [GFI][REMOVED] - Only for test */
 	pUart->PedalCtrlRequest = PedalCtr_Sport;
 	return KOSTIA_OK;
@@ -363,7 +363,7 @@ static Kostia_Rsp_t Comm_appl_ProtectModeReq(byte *pCmd, Uart_t *pUart)
 */
 static Kostia_Rsp_t Comm_appl_ValetModeReq(byte *pCmd, Uart_t *pUart)
 {
-	/*PedalControl_ReqChangeMode(); */ /* ToDo[GFI][IMP] Implement function in PedalControl */
+	/* PedalControl_PwmControlChangeState(PedalCtr_Sport); */ /* ToDo [GFI][IMPLEMENT] -  Valet mode */
 	Serial.println("Valet Mode"); 	/* ToDo [GFI][REMOVED] - Only for test */
 	pUart->PedalCtrlRequest = PedalCtr_Sport;
 	return KOSTIA_OK;

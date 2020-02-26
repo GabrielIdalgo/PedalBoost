@@ -13,7 +13,7 @@
 *    ### Headers includes
 */
 #include "Comm_protocol.h"
-
+#include "PedalControl.h"
 
 /*
 *    ### Libraries includes
@@ -55,7 +55,8 @@ typedef enum {
 typedef enum{
 	PedalCtr_Off = 0,
 	PedalCtr_Sport = 1,
-	PedalCtr_Protect = 2,
+	PedalCtr_WaitProtect = 2,
+	PedalCtr_Protect = 3,
 }PedalCtrl;
 
 typedef struct{

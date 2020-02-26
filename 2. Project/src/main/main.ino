@@ -24,23 +24,25 @@ MainData_t mainData;
 void setup()
 {
 	/* Init Timer 10 ms */
-	t.every(10, Task100ms);
+	t.every(10, Task10ms);
 	Serial.begin(115200);
 	Serial1.begin(9600);
+	void PedalControl_Init();
 
 }
 
 /* Main Loop */
 void loop()
 {
-	t.update();
+	t.update();	
+	PedalControl_PwmControl();
+	
 }
 
 /* CallBack Timer runs every 10ms */
-void Task100ms()
+void Task10ms()
 {
 	Comm_appl_FSM(&mainData.uart);
 	Comm_appl_FRM(&mainData.uart);
-	Comm_appl_RHM(&mainData.uart);  
-  
+	Comm_appl_RHM(&mainData.uart);   
 }
