@@ -18,15 +18,16 @@
  * Defines
  */
 
-#define PEDAL_PIN	A8U		/* Arduino analogic pin */
-#define PWM_PIN		8U		/* Arduino PWM pin */
+#define PEDAL_PIN	A0		/* Arduino analogic pin */
+#define PWM_PIN		8		/* Arduino PWM pin */
 
 /*
  * External Functions
  */
 
-int HwAbsLayer_ReadAnalogInput();
-int HwAbsLayer_PwmOutput(byte *pPwm);
+void HwAbsLayer_Init(void);
+void HwAbsLayer_ReadAnalogInput(unsigned int *pAnalogInput);
+void HwAbsLayer_PwmOutput(byte *pPwm);
 
 /*
  * Internal Functions

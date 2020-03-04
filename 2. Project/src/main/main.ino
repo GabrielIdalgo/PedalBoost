@@ -27,7 +27,11 @@ void setup()
 	t.every(10, Task10ms);
 	Serial.begin(115200);
 	Serial1.begin(9600);
-	void PedalControl_Init();
+  HwAbsLayer_Init();
+	PedalControl_Init();
+  
+
+ 
 
 }
 
@@ -44,5 +48,6 @@ void Task10ms()
 {
 	Comm_appl_FSM(&mainData.uart);
 	Comm_appl_FRM(&mainData.uart);
-	Comm_appl_RHM(&mainData.uart);   
+	Comm_appl_RHM(&mainData.uart);
+  PedalControl_PwmControl();   
 }

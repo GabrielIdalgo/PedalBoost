@@ -1,6 +1,6 @@
 /*
-   main.h
-   /* ToDo[idalgo]-  need to insert comments
+*   main.h
+*    ToDo[idalgo]-  need to insert comments
 */
 
 #ifndef _MAIN_H

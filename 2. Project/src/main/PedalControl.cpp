@@ -9,6 +9,12 @@
 
 sMainData MainData;
 
+unsigned int u16PedalCourse;
+byte SportConvTable[PWM_STEP] = { 0, 10, 30, 50,
+    60, 80, 100, 103, 105, 120, 130, 140, 150, 160, 170, 180, 190, 200, 210, 220, 230, 235, 240, 245,
+    246, 247, 248, 249, 250, 251, 252, 253, 254, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255,
+    255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255, 255 };
+
 /*
 *    Function: Main state machine of Pedal Control
 *
@@ -26,7 +32,7 @@ void PedalControl_Init()
 *    Function: Change the Pedal Control machine state
 *
 */
-void PedalControl_PwmControlChangeState(PedalCtrl NextState)
+void PedalControl_PwmControlChangeState(byte NextState)
 {
 	MainData.u08ConfigMode = NextState;
 }
@@ -39,17 +45,17 @@ byte PedalControl_PwmControl()
 {
 	byte u08lResult = 0;
 	byte u08lIndexSport = 0;
-	HwAbsLayer_ReadAnalogInput(&MainData->u16AnalogThrPedal);
+	HwAbsLayer_ReadAnalogInput(&MainData.u16AnalogThrPedal);
 
 
 	switch(MainData.u08ConfigMode)
 	{
 		case PedalCtr_Off:
 		{
-			MainData.u16ConvertRangePwm = MainData.u16AnalogThrPedal;
-			MainData.u16ConvertRangePwm = (MainData.u16ConvertRangePwm >> CONVERT_PWM_2);		/* number >> 2 equal number / 4  --> 1024 in 256 */
+			MainData.u16ConvertRangePwm = MainData.u16AnalogThrPedal;      
+			MainData.u16ConvertRangePwm = (MainData.u16ConvertRangePwm >> CONVERT_PWM_2);		/* number >> 2 equal number / 4  --> 1024 in 256 */     
 			MainData.u08PwmOutput = (byte)MainData.u16ConvertRangePwm;
-			HwAbsLayer_PwmOutput(&MainData->u08PwmOutput);
+			HwAbsLayer_PwmOutput(&MainData.u08PwmOutput);
 			break;
 		}
 		case PedalCtr_Sport:
@@ -58,7 +64,7 @@ byte PedalControl_PwmControl()
 			MainData.u16ConvertRangePwm = (MainData.u16ConvertRangePwm >> CONVERT_PWM_4);		/* number >> 4 equal number / 16  --> 1024 in 64 (Sport Table) */
 			u08lIndexSport = (byte)MainData.u16ConvertRangePwm;
 			MainData.u08PwmOutput = SportConvTable[u08lIndexSport];
-			HwAbsLayer_PwmOutput(&MainData->u08PwmOutput);
+			HwAbsLayer_PwmOutput(&MainData.u08PwmOutput);
 			break;
 		}
 		case PedalCtr_WaitProtect:
@@ -74,7 +80,7 @@ byte PedalControl_PwmControl()
 		case PedalCtr_Protect:
 		{
 			MainData.u08PwmOutput = 0;
-			HwAbsLayer_PwmOutput(&MainData->u08PwmOutput);
+			HwAbsLayer_PwmOutput(&MainData.u08PwmOutput);
 			break;
 		}
 		default:
@@ -85,5 +91,3 @@ byte PedalControl_PwmControl()
 
 	return u08lResult;
 }
-
-
