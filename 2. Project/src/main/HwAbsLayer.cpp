@@ -35,7 +35,7 @@ void HwAbsLayer_ReadAnalogInput(unsigned int *pAnalogInput)
 
   /* ToDo [GFI] - Remove - only for test */
   Counter++;
-  if(Counter >= 10000){
+  if(Counter >= 100){
     Serial.print("lAdc = ");  
     Serial.println(lAdc);	
     Counter = 0;
@@ -53,7 +53,7 @@ void HwAbsLayer_PwmOutput(byte *pPwm)
   /* ToDo [GFI] - Remove - only for test */
   lPwm = *pPwm;
   Counter2++;
-  if(Counter2 >= 10000){
+  if(Counter2 >= 100){
     Serial.print("lPwm = ");  
     Serial.println(lPwm);  
     Counter2 = 0;

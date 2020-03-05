@@ -28,19 +28,14 @@ void setup()
 	Serial.begin(115200);
 	Serial1.begin(9600);
   HwAbsLayer_Init();
-	PedalControl_Init();
-  
-
- 
+	PedalControl_Init(); 
 
 }
 
 /* Main Loop */
 void loop()
 {
-	t.update();	
-	PedalControl_PwmControl();
-	
+	t.update();		
 }
 
 /* CallBack Timer runs every 10ms */
@@ -49,5 +44,5 @@ void Task10ms()
 	Comm_appl_FSM(&mainData.uart);
 	Comm_appl_FRM(&mainData.uart);
 	Comm_appl_RHM(&mainData.uart);
-  PedalControl_PwmControl();   
+  PedalControl_PwmControl();  
 }

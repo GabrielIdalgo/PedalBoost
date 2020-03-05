@@ -44,7 +44,8 @@ void PedalControl_PwmControlChangeState(byte NextState)
 byte PedalControl_PwmControl()
 {
 	byte u08lResult = 0;
-	byte u08lIndexSport = 0;
+	float flPwmSport = 0;
+  byte u08lPwmSport = 0;  
 	HwAbsLayer_ReadAnalogInput(&MainData.u16AnalogThrPedal);
 
 
@@ -60,11 +61,17 @@ byte PedalControl_PwmControl()
 		}
 		case PedalCtr_Sport:
 		{
-			MainData.u16ConvertRangePwm = MainData.u16AnalogThrPedal;
-			MainData.u16ConvertRangePwm = (MainData.u16ConvertRangePwm >> CONVERT_PWM_4);		/* number >> 4 equal number / 16  --> 1024 in 64 (Sport Table) */
-			u08lIndexSport = (byte)MainData.u16ConvertRangePwm;
-			MainData.u08PwmOutput = SportConvTable[u08lIndexSport];
-			HwAbsLayer_PwmOutput(&MainData.u08PwmOutput);
+			MainData.u16ConvertRangePwm = MainData.u16AnalogThrPedal;      
+      MainData.u16ConvertRangePwm = (MainData.u16ConvertRangePwm >> CONVERT_PWM_2);   /* number >> 2 equal number / 4  --> 1024 in 256 */     
+      MainData.u08PwmOutput = (byte)MainData.u16ConvertRangePwm;
+      flPwmSport = (MainData.u08PwmOutput * SPORT_FACT);      
+      if ( flPwmSport >= PWM_MAX ){
+        u08lPwmSport = PWM_MAX;
+      }else{
+        u08lPwmSport = (byte)flPwmSport;    
+		  }
+      Serial.println(u08lPwmSport);
+      HwAbsLayer_PwmOutput(u08lPwmSport);
 			break;
 		}
 		case PedalCtr_WaitProtect:
