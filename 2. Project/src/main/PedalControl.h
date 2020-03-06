@@ -24,7 +24,7 @@
 #define CONVERT_PWM_4	  4U
 #define PEDAL_ZERO 		  10U
 #define PWM_STEP 		    64U
-#define SPORT_FACT      1.3
+#define SPORT_FACT      13
 #define PWM_MAX         204
 
 
